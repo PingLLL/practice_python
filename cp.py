@@ -11,6 +11,8 @@ getdest = open(dest, 'wb')
 #真正实现拷贝功能的代码
 getdest.writelines(getsrc)
 
+#立即保存到硬盘
+getdest.flush()
 #关闭文件
 opensrc.close()
 getdest.close()
