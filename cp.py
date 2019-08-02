@@ -10,3 +10,7 @@ getdest = open(dest, 'wb')
 
 #真正实现拷贝功能的代码
 getdest.writelines(getsrc)
+
+#关闭文件
+opensrc.close()
+getdest.close()
