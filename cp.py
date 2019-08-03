@@ -1,18 +1,9 @@
-#用位置变量调用源文件,目标文件
 import sys
+import subprocess
 src = sys.argv[1]
 dest = sys.argv[2]
 
-#为拷贝代码所需的动作定义变量
-opensrc = open(src, 'rb')
-getsrc = opensrc.readlines()
-getdest = open(dest, 'wb')
-
-#真正实现拷贝功能的代码
-getdest.writelines(getsrc)
-
-#立即保存到硬盘
-getdest.flush()
-#关闭文件
-opensrc.close()
-getdest.close()
+readsrc = subprocess.run('cat %s' %src, shell=True, stdout=subprocess.PIPE, stderr=subprocess.PIPE)
+content = readsrc.stdout
+with open(dest, 'w+') as getdest:
+    getdest.writelines(str(content))
